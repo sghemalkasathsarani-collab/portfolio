@@ -1,18 +1,12 @@
 import React from 'react';
 import { ArrowUpRight, Download } from 'lucide-react';
-import { ABOUT_DATA, HERO_DATA, SOCIAL_LINKS, STATS } from '../constants';
+import { ABOUT_DATA, HERO_DATA, INITIALS, SOCIAL_LINKS, STATS } from '../constants';
 import { CONTAINER } from '../utils/layout';
 
 const LINKS = [
   { label: 'Email', href: `mailto:${SOCIAL_LINKS.email}` },
   { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin },
 ];
-
-const initials = HERO_DATA.name
-  .split(' ')
-  .filter((_, i, parts) => i === 0 || i === parts.length - 1)
-  .map((part) => part[0])
-  .join('');
 
 // Shows the portrait once one is set in constants.ts; until then a monogram on a blueprint grid
 const Portrait: React.FC<{ className: string; small?: boolean }> = ({ className, small = false }) =>
@@ -30,7 +24,7 @@ const Portrait: React.FC<{ className: string; small?: boolean }> = ({ className,
         color: 'color-mix(in srgb, var(--color-accent) 12%, transparent)',
       }}
     >
-      <span className={`text-accent ${small ? 'text-2xl' : 'text-8xl'}`}>{initials}</span>
+      <span className={`text-accent ${small ? 'text-2xl' : 'text-8xl'}`}>{INITIALS}</span>
     </div>
   );
 

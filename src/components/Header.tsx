@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Download, Menu, X } from 'lucide-react';
-import { HERO_DATA, SOCIAL_LINKS } from '../constants';
+import { HERO_DATA, INITIALS, SOCIAL_LINKS } from '../constants';
 import { CONTAINER } from '../utils/layout';
 import ThemeToggle from './ThemeToggle';
 
@@ -42,12 +42,6 @@ const SOCIALS = [
   { label: 'Email', href: `mailto:${SOCIAL_LINKS.email}` },
   { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin },
 ];
-
-const initials = HERO_DATA.name
-  .split(' ')
-  .filter((_, i, parts) => i === 0 || i === parts.length - 1)
-  .map((part) => part[0])
-  .join('');
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -101,7 +95,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-2.5"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent font-serif text-[15px] text-paper">
-              {initials}
+              {INITIALS}
             </span>
             <span className="hidden font-serif text-lg tracking-tight text-ink sm:inline">Hemalka</span>
           </button>

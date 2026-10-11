@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { RESEARCH } from '../constants';
 import type { ResearchProject } from '../types';
 import Section from './Section';
@@ -10,11 +10,18 @@ const STATUS = {
   academic: { label: 'Undergraduate', dot: 'bg-faint', text: 'text-muted' },
 } as const;
 
-const ProjectRow: React.FC<{ project: ResearchProject }> = ({ project }) => {
+// Phones show the first university project until "Show all" is pressed; larger screens show everything
+const MOBILE_VISIBLE = 1;
+
+const ProjectRow: React.FC<{ project: ResearchProject; mobileHidden?: boolean }> = ({ project, mobileHidden = false }) => {
   const status = STATUS[project.status];
 
   return (
-    <li className={`grid gap-5 py-8 first:pt-0 sm:py-10 ${project.image ? 'sm:grid-cols-[1fr_220px] sm:gap-10 lg:grid-cols-[1fr_300px]' : ''}`}>
+    <li
+      className={`grid gap-5 py-8 first:pt-0 sm:py-10 ${project.image ? 'sm:grid-cols-[1fr_220px] sm:gap-10 lg:grid-cols-[1fr_300px]' : ''} ${
+        mobileHidden ? 'hidden md:grid' : ''
+      }`}
+    >
       <div className="min-w-0">
         <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
           <span className={`inline-flex items-center gap-1.5 font-medium ${status.text}`}>
@@ -67,6 +74,8 @@ const ProjectRow: React.FC<{ project: ResearchProject }> = ({ project }) => {
 const Research: React.FC = () => {
   const industry = RESEARCH.filter((p) => p.status !== 'academic');
   const academic = RESEARCH.filter((p) => p.status === 'academic');
+  const [expanded, setExpanded] = useState(false);
+  const hiddenCount = academic.length - MOBILE_VISIBLE;
 
   return (
     <Section id="research" label="Research" title="Research & projects">
@@ -83,10 +92,21 @@ const Research: React.FC = () => {
         University projects
       </h3>
       <ol className="divide-y divide-rule">
-        {academic.map((project) => (
-          <ProjectRow key={project.id} project={project} />
+        {academic.map((project, i) => (
+          <ProjectRow key={project.id} project={project} mobileHidden={i >= MOBILE_VISIBLE && !expanded} />
         ))}
       </ol>
+
+      {hiddenCount > 0 && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-rule bg-card px-4 py-2 text-sm font-medium text-ink md:hidden"
+        >
+          {expanded ? 'Show fewer' : `Show all ${academic.length}`}
+          <ChevronDown size={15} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
+        </button>
+      )}
     </Section>
   );
 };

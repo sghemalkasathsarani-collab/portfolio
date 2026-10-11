@@ -21,6 +21,9 @@ export const HERO_DATA = {
   ],
 };
 
+// Monogram in the header and photo fallback; matches public/favicon.svg
+export const INITIALS = 'HS';
+
 export const ABOUT_DATA = {
   // Drop a portrait into public/ and set e.g. asset('photo.jpg'); until then the initials are shown
   photo: asset('photo.jpg') as string,
