@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Download, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { HERO_DATA, INITIALS, SOCIAL_LINKS } from '../constants';
 import { CONTAINER } from '../utils/layout';
 import ThemeToggle from './ThemeToggle';
@@ -32,9 +32,9 @@ const useTheme = () => {
 
 const NAV = [
   { label: 'Research', id: 'research' },
+  { label: 'Projects', id: 'projects' },
   { label: 'Experience', id: 'experience' },
-  { label: 'Education', id: 'education' },
-  { label: 'Skills', id: 'skills' },
+  { label: 'Honours', id: 'honours' },
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -106,15 +106,6 @@ const Header: React.FC = () => {
                 {item.label}
               </button>
             ))}
-            {SOCIAL_LINKS.resume && (
-              <a
-                href={SOCIAL_LINKS.resume}
-                download
-                className="rounded-full border border-ink/80 px-4 py-1.5 text-sm font-medium text-ink hover:bg-ink hover:text-paper transition-colors"
-              >
-                CV
-              </a>
-            )}
             {themeButton}
           </nav>
 
@@ -177,15 +168,6 @@ const Header: React.FC = () => {
         </ul>
 
         <div className="flex-shrink-0 space-y-5 border-t border-rule px-5 py-6">
-          {SOCIAL_LINKS.resume && (
-            <a
-              href={SOCIAL_LINKS.resume}
-              download
-              className="flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper hover:bg-accent transition-colors"
-            >
-              <Download size={16} /> Download CV
-            </a>
-          )}
           <div className="flex items-center justify-center gap-6">
             {SOCIALS.map((link) => (
               <a

@@ -27,13 +27,7 @@ const Contact: React.FC = () => (
             >
               LinkedIn <ArrowUpRight size={14} />
             </a>
-            {SOCIAL_LINKS.resume && (
-              <a href={SOCIAL_LINKS.resume} download className="text-sm font-medium text-ink hover:text-accent transition-colors">
-                CV (PDF)
-              </a>
-            )}
           </div>
-          <p className="mt-6 text-sm text-faint">References available on request.</p>
         </div>
       </div>
 

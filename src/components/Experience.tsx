@@ -1,38 +1,63 @@
-import React from 'react';
-import { EXPERIENCE } from '../constants';
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { PROCESS_STEPS } from '../constants';
 import Section from './Section';
 
-const Experience: React.FC = () => (
-  <Section id="experience" label="Experience" title="Work experience">
-    <ol className="relative border-l border-rule">
-      {EXPERIENCE.map((role, i) => (
-        <li key={role.org} className="relative pb-10 pl-8 last:pb-0 md:pb-14">
-          <span
-            className={`absolute -left-[5px] top-2 h-[9px] w-[9px] rounded-full ${
-              i === 0 ? 'bg-accent ring-4 ring-accent-soft' : 'border border-faint bg-paper'
-            }`}
-          />
-          <div className="grid gap-1 md:grid-cols-[140px_1fr] md:gap-8">
-            <p className="font-mono text-xs leading-7 text-faint">{role.period}</p>
-            <div>
-              <h3 className="font-serif text-xl leading-snug text-ink">
-                {role.title}
-                <span className="text-muted"> · {role.org}</span>
-              </h3>
-              <p className="mt-0.5 text-sm text-faint">{role.place}</p>
-              <ul className="mt-3 max-w-2xl space-y-2 text-[15px] leading-relaxed text-muted">
-                {role.points.map((point) => (
-                  <li key={point.slice(0, 24)} className="relative pl-4 before:absolute before:left-0 before:top-[0.7em] before:h-1 before:w-1 before:rounded-full before:bg-accent/60">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ol>
-  </Section>
-);
+// Phones show the latest few roles until "Show all" is pressed; larger screens show everything
+const MOBILE_VISIBLE = 3;
+
+// Journey entries are stored oldest-first; a CV reads newest-first.
+const Experience: React.FC = () => {
+  const entries = [...PROCESS_STEPS].reverse();
+  const [expanded, setExpanded] = useState(false);
+  const hiddenCount = entries.length - MOBILE_VISIBLE;
+
+  return (
+    <Section id="experience" label="Experience" title="Experience & education">
+      <ol className="relative border-l border-rule">
+        {entries.map((step, i) => {
+          const current = i === 0;
+          const [role, org] = step.title.split('|').map((part) => part.trim());
+          return (
+            <li
+              key={step.title}
+              className={`relative pb-8 pl-8 last:pb-0 md:pb-10 ${i >= MOBILE_VISIBLE && !expanded ? 'hidden md:block' : ''}`}
+            >
+              <span
+                className={`absolute -left-[5px] top-2 h-[9px] w-[9px] rounded-full ${
+                  current ? 'bg-accent ring-4 ring-accent-soft' : 'border border-faint bg-paper'
+                }`}
+              />
+              <div className="grid gap-1 md:grid-cols-[120px_1fr] md:gap-8">
+                <p className="font-mono text-xs leading-7 text-faint">
+                  {step.year}
+                  {current && <span className="ml-2 text-accent">Now</span>}
+                </p>
+                <div>
+                  <h3 className="font-serif text-xl leading-snug text-ink">
+                    {role}
+                    {org && <span className="text-muted"> · {org}</span>}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted">{step.description.trim()}</p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+
+      {hiddenCount > 0 && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-rule bg-card px-4 py-2 text-sm font-medium text-ink md:hidden"
+        >
+          {expanded ? 'Show fewer' : `Show all ${entries.length}`}
+          <ChevronDown size={15} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
+        </button>
+      )}
+    </Section>
+  );
+};
 
 export default Experience;

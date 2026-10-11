@@ -2,8 +2,8 @@ import React from 'react';
 import Header from './components/Header';
 import Intro from './components/Intro';
 import Research from './components/Research';
+import Projects from './components/Projects';
 import Experience from './components/Experience';
-import Education from './components/Education';
 import Honours from './components/Honours';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -14,8 +14,8 @@ const App: React.FC = () => (
     <main>
       <Intro />
       <Research />
+      <Projects />
       <Experience />
-      <Education />
       <Honours />
       <Skills />
     </main>

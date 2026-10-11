@@ -1,51 +1,47 @@
-export interface ResearchProject {
+export interface Project {
   id: string;
   title: string;
-  /** Where the work was done, e.g. 'CESL, Jawatta' */
-  place: string;
-  date: string;
-  /** Short badge, e.g. 'Published', 'Ongoing', 'Undergraduate' */
-  status: 'published' | 'ongoing' | 'academic';
-  /** Publication venue, if any */
-  venue?: string;
-  summary: string[];
-  /** Tools and responsibilities, shown as chips */
-  tools: string[];
-  /** Optional cover image in public/, e.g. `${import.meta.env.BASE_URL}projects/bridge.jpg` */
-  image?: string;
+  description: string;
+  longDescription?: string;
+  tags: string[];
+  /** Images, local videos or YouTube links; the first still image doubles as the card cover */
+  gallery?: string[];
+  details: string[];
   link?: string;
-}
-
-export interface Role {
-  title: string;
-  org: string;
-  place: string;
-  period: string;
-  points: string[];
-}
-
-export interface Education {
-  degree: string;
-  school: string;
-  period: string;
-  result: string;
-  details: string;
-}
-
-export interface Achievement {
-  title: string;
-  org: string;
-  year: string;
-  distinction: string;
-}
-
-export interface Activity {
-  role: string;
-  org: string;
-  period: string;
 }
 
 export interface SkillCategory {
   title: string;
   skills: string[];
+  /** Projects on this site where these tools were used */
+  usedIn?: string[];
+}
+
+export interface ProcessStep {
+  title: string;
+  description: string;
+  year: string;
+}
+
+export interface ResearchPaper {
+  id: string;
+  title: string;
+  abstract: string;
+  /** First-page preview; without one a typeset placeholder page is drawn */
+  image?: string;
+  link: string;
+  publisher: string;
+  /** Short venue name shown on the badge, e.g. 'SSESL' */
+  venue: string;
+  /** A year once published, or 'Under Review' / 'In Progress' */
+  date: string;
+  tags: string[];
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  /** Photo of the award or event; without one a placeholder tile with the year is shown */
+  image?: string;
+  year: string;
 }

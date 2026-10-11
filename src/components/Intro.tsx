@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowUpRight, Download } from 'lucide-react';
-import { ABOUT_DATA, HERO_DATA, INITIALS, SOCIAL_LINKS, STATS } from '../constants';
+import { ArrowUpRight } from 'lucide-react';
+import { ABOUT_DATA, HERO_DATA, RESEARCH_PAPERS, SOCIAL_LINKS } from '../constants';
 import { CONTAINER } from '../utils/layout';
 
 const LINKS = [
@@ -8,36 +8,10 @@ const LINKS = [
   { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin },
 ];
 
-// Shows the portrait once one is set in constants.ts; until then a monogram on a blueprint grid
-const Portrait: React.FC<{ className: string; small?: boolean }> = ({ className, small = false }) =>
-  ABOUT_DATA.photo ? (
-    <img src={ABOUT_DATA.photo} alt={small ? '' : `Portrait of ${HERO_DATA.name}`} className={`object-cover ${className}`} />
-  ) : (
-    <div
-      aria-hidden="true"
-      className={`flex items-center justify-center bg-accent-soft font-serif text-accent ${className}`}
-      style={{
-        backgroundImage:
-          'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
-        backgroundSize: small ? '12px 12px' : '24px 24px',
-        backgroundPosition: 'center',
-        color: 'color-mix(in srgb, var(--color-accent) 12%, transparent)',
-      }}
-    >
-      <span className={`text-accent ${small ? 'text-2xl' : 'text-8xl'}`}>{INITIALS}</span>
-    </div>
-  );
-
-const CvButton: React.FC<{ className?: string }> = ({ className = '' }) =>
-  SOCIAL_LINKS.resume ? (
-    <a
-      href={SOCIAL_LINKS.resume}
-      download
-      className={`items-center gap-2 rounded-full bg-ink font-medium text-paper hover:bg-accent transition-colors ${className}`}
-    >
-      <Download size={16} /> Download CV
-    </a>
-  ) : null;
+const STATS = [
+  { value: String(RESEARCH_PAPERS.length), label: 'Research papers' },
+  { value: '3.41', label: 'GPA, Second Upper' },
+];
 
 // Phones get a compact header (round photo beside the name, figures in one strip) so the
 // first screen says who, what and the key numbers; from md up it's the two-column layout.
@@ -49,7 +23,11 @@ const Intro: React.FC = () => {
       <div className="grid gap-10 md:grid-cols-[1fr_280px] md:gap-16">
         <div>
           <div className="flex items-center gap-4 md:block">
-            <Portrait small className="h-[76px] w-[76px] flex-shrink-0 rounded-full ring-1 ring-rule md:hidden" />
+            <img
+              src={ABOUT_DATA.photo}
+              alt=""
+              className="h-[76px] w-[76px] flex-shrink-0 rounded-full object-cover ring-1 ring-rule md:hidden"
+            />
             <div className="min-w-0">
               <p className="mb-5 hidden font-mono text-[11px] uppercase tracking-[0.14em] text-faint md:block">
                 {HERO_DATA.role} · {HERO_DATA.affiliation}
@@ -78,7 +56,6 @@ const Intro: React.FC = () => {
                 </div>
               ))}
             </dl>
-            <CvButton className="ml-auto inline-flex flex-shrink-0 px-4 py-2 text-[13px]" />
           </div>
 
           <div className="mt-6 max-w-2xl space-y-4 text-[15px] leading-relaxed text-muted md:mt-8 md:text-base">
@@ -88,7 +65,7 @@ const Intro: React.FC = () => {
           </div>
 
           <div className="mt-8">
-            <p className="mb-3 text-sm font-medium text-ink">Focus areas</p>
+            <p className="mb-3 text-sm font-medium text-ink">Research interests</p>
             <ul className="flex flex-wrap gap-2">
               {HERO_DATA.interests.map((interest) => (
                 <li key={interest} className="rounded-full border border-rule bg-card px-3 py-1 text-sm text-muted">
@@ -99,7 +76,6 @@ const Intro: React.FC = () => {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-10">
-            <CvButton className="hidden px-5 py-2.5 text-sm md:inline-flex" />
             {LINKS.map((link) => (
               <a
                 key={link.label}
@@ -116,7 +92,11 @@ const Intro: React.FC = () => {
         </div>
 
         <div className="hidden md:block">
-          <Portrait className="aspect-[4/5] w-full rounded-sm" />
+          <img
+            src={ABOUT_DATA.photo}
+            alt={`Portrait of ${HERO_DATA.name}`}
+            className="aspect-[4/5] w-full rounded-sm object-cover"
+          />
 
           {/* Headline figures sit right under the photo so they're visible without scrolling */}
           <dl className="mt-5 grid grid-cols-2 border-y border-rule">
@@ -127,6 +107,10 @@ const Intro: React.FC = () => {
               </div>
             ))}
           </dl>
+
+          <p className="mt-4 text-xs leading-relaxed text-faint">
+            {HERO_DATA.title}. {HERO_DATA.intro}
+          </p>
         </div>
       </div>
     </section>
