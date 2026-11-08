@@ -43,7 +43,7 @@ export const HERO_DATA = {
 };
 
 export const ABOUT_DATA = {
-  photo: asset('photo.jpg'),
+  photo: asset('hemalka.png'),
   bio: `I am a Civil Engineer passionate about merging civil engineering with modern technology. My work spans BIM-driven workflows, bridge design, software and numerical modelling, with hands-on site experience behind it.
 
 I thrive in complex situations and enjoy finding innovative solutions, from turning point clouds into models of damaged bridges to building digital twins that track how concrete structures age. I like working with people as much as with models, and enjoy leading teams towards a shared goal.`,
