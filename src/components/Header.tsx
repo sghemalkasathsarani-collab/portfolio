@@ -43,7 +43,14 @@ const SOCIALS = [
   { label: 'LinkedIn', href: SOCIAL_LINKS.linkedin },
 ];
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  /** Back to the top of the home page (leaving a project page if one is open) */
+  onHome: () => void;
+  /** Scroll to a home-page section (leaving a project page if one is open) */
+  onSection: (id: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onHome, onSection }) => {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
 
@@ -51,8 +58,8 @@ const Header: React.FC = () => {
     // Unlock page scroll before navigating; the menu's effect cleanup runs too late for scrollIntoView
     document.body.style.overflow = '';
     setOpen(false);
-    if (id === 'top') window.scrollTo({ top: 0, behavior: 'smooth' });
-    else document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (id === 'top') onHome();
+    else onSection(id);
   };
 
   const linkClass = 'text-sm text-muted hover:text-ink transition-colors';
