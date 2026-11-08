@@ -700,7 +700,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
     description: 'Worked across the design, planning and site units, from design support and BOQs to supervising concreting on the Narahenpita Pre-school and Cultural Centre.',
   },
   {
-    title: 'Civil Engineer | Central Engineering Services',
+    title: 'BIM Engineer | Central Engineering Services',
     year: '2025 - 2026',
     description: 'Delivering end-to-end BIM workflows in Revit, from structural modelling and rebar detailing to Scan-to-BIM with ReCap, and researching digital twins and AR for construction.',
   },
