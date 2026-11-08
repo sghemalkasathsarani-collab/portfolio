@@ -33,8 +33,17 @@ export interface ResearchPaper {
   publisher: string;
   /** Short venue name shown on the badge, e.g. 'SSESL' */
   venue: string;
-  /** A year once published, or 'Under Review' / 'In Progress' */
+  /** Author list in citation order; the entry equal to OWN_NAME is bolded */
+  authors: string[];
+  /** Publication year, 'Accepted', or 'Under Review' */
   date: string;
+  /** Skimmable summary; result and limitation are left out where the paper gives none */
+  summary: {
+    problem: string;
+    built: string;
+    result?: string;
+    limitation?: string;
+  };
   tags: string[];
 }
 
