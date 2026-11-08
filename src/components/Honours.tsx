@@ -1,34 +1,20 @@
 import React from 'react';
-import { Award } from 'lucide-react';
 import { ACHIEVEMENTS } from '../constants';
-import { Blueprint } from './Placeholders';
 import Section from './Section';
 
+// Text-only list: year, then the honour and its distinction
 const Honours: React.FC = () => (
   <Section id="honours" label="Honours" title="Honours & achievements">
-    <ul className="grid grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-3">
+    <ul className="grid border-t border-rule sm:grid-cols-2 sm:gap-x-10">
       {ACHIEVEMENTS.map((item) => {
         const [name, distinction] = item.title.split('|').map((part) => part.trim());
         return (
-          <li key={item.id}>
-            <figure>
-              <div className="overflow-hidden rounded-sm bg-wash">
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
-                  />
-                ) : (
-                  <Blueprint label={item.year} icon={<Award size={26} strokeWidth={1.5} />} className="aspect-[4/3] w-full" />
-                )}
-              </div>
-              <figcaption className="mt-3">
-                <span className="block text-[15px] font-medium leading-snug text-ink">{name}</span>
-                {distinction && <span className="mt-0.5 block text-sm text-accent">{distinction}</span>}
-              </figcaption>
-            </figure>
+          <li key={item.id} className="grid grid-cols-[3.5rem_1fr] items-baseline gap-x-4 border-b border-rule py-5">
+            <span className="font-mono text-xs tracking-wider text-faint">{item.year}</span>
+            <div>
+              <p className="text-[15px] font-medium leading-snug text-ink">{name}</p>
+              {distinction && <p className="mt-0.5 text-sm text-accent">{distinction}</p>}
+            </div>
           </li>
         );
       })}

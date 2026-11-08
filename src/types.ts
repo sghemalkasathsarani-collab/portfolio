@@ -67,7 +67,5 @@ export interface ResearchPaper {
 export interface Achievement {
   id: string;
   title: string;
-  /** Photo of the award or event; without one a placeholder tile with the year is shown */
-  image?: string;
   year: string;
 }

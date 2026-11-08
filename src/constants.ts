@@ -11,7 +11,6 @@
  *  - Project: put files in public/projects/<id>/ and list them in `gallery`
  *    (images, .mp4 clips or YouTube links; the first still image is the card cover).
  *  - Paper: a screenshot of the first page as `image`.
- *  - Achievement: a photo of the award or event as `image`.
  * Until then each one shows a drawn placeholder.
  *
  * Changes here only go live after running `npm run deploy`.
@@ -34,8 +33,8 @@ export const INITIALS = 'HS';
 
 export const HERO_DATA = {
   name: 'Hemalka Senarath Gamage',
-  title: 'Civil Engineer',
-  role: 'Civil Engineer',
+  title: 'BIM Engineer',
+  role: 'BIM Engineer',
   affiliation: 'Central Engineering Services (Pvt) Ltd',
   interests: ['BIM-driven workflows', 'Digital twins', 'Scan-to-BIM & point clouds', 'Bridge design', 'Numerical modelling'],
   tagline: 'I bring BIM and reality capture to the way we build and care for infrastructure.',
@@ -44,9 +43,7 @@ export const HERO_DATA = {
 
 export const ABOUT_DATA = {
   photo: asset('hemalka.png'),
-  bio: `I am a Civil Engineer passionate about merging civil engineering with modern technology. My work spans BIM-driven workflows, bridge design, software and numerical modelling, with hands-on site experience behind it.
-
-I thrive in complex situations and enjoy finding innovative solutions, from turning point clouds into models of damaged bridges to building digital twins that track how concrete structures age. I like working with people as much as with models, and enjoy leading teams towards a shared goal.`,
+  bio: `I am a dedicated BIM Engineer with a diverse skill set in problem-solving, communication, leadership, and teamwork. Passionate about merging civil engineering with modern technology and skilled in BIM Driven workflows, Software Modelling, Numerical Modelling, Bridge Designing and on site working experience. Thrives in complex situations, finding innovative solutions and Excellent communicator, building strong relationships, Natural leader, motivating teams towards collective goals. Committed to driving success, utilizing adaptability, strategic thinking, and a results-oriented approach. Eager to integrate civil engineering with modern technology for impact solutions.`,
 };
 
 // =========================================

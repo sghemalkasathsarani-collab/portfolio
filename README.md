@@ -1,6 +1,6 @@
 # Portfolio — Hemalka Senarath Gamage
 
-A single-page portfolio for a Civil Engineer (BIM, digital twins, Scan-to-BIM, bridge design), built with React 19, TypeScript, Vite and Tailwind CSS. It uses the same design system as [kd-27.github.io/portfolio](https://kd-27.github.io/portfolio/) with a teal accent.
+A single-page portfolio for a BIM Engineer (digital twins, Scan-to-BIM, bridge design), built with React 19, TypeScript, Vite and Tailwind CSS. It uses the same design system as [kd-27.github.io/portfolio](https://kd-27.github.io/portfolio/) with a teal accent.
 
 Sections: Intro, Research & projects, Work experience, Education, Achievements & leadership, Skills, Contact.
 
